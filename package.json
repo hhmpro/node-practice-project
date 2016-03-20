@@ -1,0 +1,19 @@
+{
+  "name": "node-practice-project",
+  "version": "0.0.1",
+  "description": "Node.js项目实战",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hhmpro/node-practice-project.git"
+  },
+  "author": "Huiming Hou <240050497@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hhmpro/node-practice-project/issues"
+  },
+  "homepage": "https://github.com/hhmpro/node-practice-project"
+}
