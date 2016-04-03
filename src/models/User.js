@@ -12,8 +12,10 @@ module.exports = function(done){
   const ObjectId = mongoose.ObjectId;
   const User = new Schema({
     name: {type: String, unique: true},
+    email: {type: String, uique: true},
     password: {type: String},
-    nickname: {type: String}
+    nickname: {type: String},
+    about: {type: String}
   });
   $.mongodb.model('User', User);
   $.model.User = $.mongodb.model('User');

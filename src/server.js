@@ -25,7 +25,12 @@ $.init.add((done) => {
   const env = process.env.NODE_ENV || null;
   if(env){
     debug('load env: %s', env);
-    $.config.load(path.resolve(__dirname, '../config', env + '.js'));
+    try{
+      $.config.load(path.resolve(__dirname, '../config', env + '.js'));
+    }catch(e){
+      debug('catch exception when loading config,env:%s,:exception: %s', env, e);
+      return;
+    }
   }
   $.env = env;
   done();
@@ -37,6 +42,11 @@ $.init.load(path.resolve(__dirname, 'init', 'mongodb.js'));
 
 // 加载Models
 $.init.load(path.resolve(__dirname, 'models'));
+
+// 加载Methods
+$.init.load(path.resolve(__dirname, 'methods'));
+
+
 
 // 初始化Express
 $.init.load(path.resolve(__dirname, 'init', 'express.js'));
@@ -52,4 +62,5 @@ $.init((err) => {
   }else{
     console.log("inited [env=%s]",$.env);
   }
+  require('./test');
 });
