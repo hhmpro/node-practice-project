@@ -12,7 +12,7 @@ module.exports = function(done){
   $.method('user.add').check({
     name: {required: true, validate:(v) => validator.isLength(v, {min: 4, max: 20}) && /^[a-zA-Z]/.test(v)},
     email: {required: true, validate:(v) => validator.isEmail(v)},
-    password: {required: true, validate:(v) => !validator.isNumeric(v) && validator.isLength(v, {min: 6})}
+    password: {required: true, validate:(v) => validator.isLength(v, {min: 6})}
   });
   $.method('user.add').register(async function(params, callback){
     params.name = params.name.toLowerCase();
@@ -37,7 +37,8 @@ module.exports = function(done){
 
     callback(params);
   });
-  $.method('user.add').check({
+  
+  $.method('user.get').check({
     _id: {validate:(v) => validator.isMongoId(v)},
     name: {validate:(v) => validator.isLength(v, {min: 4, max: 20}) && /^[a-zA-Z]/.test(v)},
     email: {validate:(v) => validator.isEmail(v)}
