@@ -27,7 +27,14 @@ module.exports = function(done){
   }));
   const router = express.Router();
 //  $.router = router;
-
+  
+  app.use(function(req, res, next){
+     res.apiSuccess = function(data){
+        res.json({success: true, result: data});
+     };
+     next(); 
+  });
+  
   const routerWrap = {};
   ['get','head','post','put','del','delete'].forEach(method => {
      routerWrap[method] = function(path, ...fnList){
