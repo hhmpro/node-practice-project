@@ -22,4 +22,3 @@
 //   name:'hello',
 //   nickname:'我是hhming123'
 // }, console.log);
-console.log("hello,nodemon!");
