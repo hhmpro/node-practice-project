@@ -29,5 +29,22 @@ module.exports = function(done){
     if(!topic) return next(new Error(`topic ${req.params.topic_id} does not exist`));
     res.apiSuccess({topic});
   });
+  
+  $.router.post('/api/topic/item/:topic_id', $.checkLogin, $.checkTopicAuthor, async function(req, res, next){
+    req.body._id = req.params.topic_id;
+    if("tags" in req.body){
+        req.body.tags = req.body.tags.split(",").map(v => v.trim()).filter(v => v);
+    }
+    await $.method('topic.update').call(req.body) 
+    const topic = await $.method('topic.get').call({_id: req.params.topic_id});
+    
+    res.apiSuccess({topic});
+  });
+
+  $.router.delete('/api/topic/item/:topic_id', $.checkLogin, $.checkTopicAuthor, async function(req, res, next){
+    const topic = await $.method('topic.delete').call({_id: req.params.topic_id}); 
+    
+    res.apiSuccess({topic});
+  });
   done();
 };
