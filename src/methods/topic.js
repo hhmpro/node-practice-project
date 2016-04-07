@@ -48,8 +48,8 @@ module.exports = function(done){
       updatedAt: 1,
       lastUpdatedAt: 1
     });
-    if(params.skip) ret.skip(params.skip);
-    if(params.limit) ret.limit(params.limit);
+    if(params.skip) ret.skip(Number(params.skip));
+    if(params.limit) ret.limit(Number(params.limit));
     return ret;
   });
   

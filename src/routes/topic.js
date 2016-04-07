@@ -18,7 +18,7 @@ module.exports = function(done){
   
   $.router.get('/api/topic/list',async function(req, res, next){
     if("tags" in req.query){
-      req.query.tags = req.body.tags.split(",").map(v => v.trim()).filter(v => v);
+      req.query.tags = req.query.tags.split(",").map(v => v.trim()).filter(v => v);
     }
     const list = await $.method('topic.list').call(req.query);
     res.json({success: true, list});
