@@ -34,11 +34,47 @@ export function request(method, path, data = {}){
         
     });
 }
+export function getLoginUser(){
+    return request('get','login_user',{});
+}
 
+export function login(options){
+    return request('post','login',options);
+}
+
+export function logout(token){
+    return request('get',`logout?token=${token}`,{});
+}
+
+export function signup(options){
+    return request('post','signup',options);
+}
+
+//topic
 export function getTopicList(options){
     return request('get','topic/list', {});
 }
 
 export function getTopicDetail(id){
     return request('get',`topic/item/${id}`).then(ret => ret.topic);
+}
+
+export function addTopic(options){
+    return request('post','topic/add',options);
+}
+
+export function updateTopic(options){
+    return request('post',`topic/item/${options.topicId}`,options);
+}
+
+export function deleteTopic(topicId){
+    return request('delete',`topic/item/${topicId}`,{});
+}
+
+//comment
+export function addComment(options){
+    return request('post',`topic/item/${options.topicId}/comment/add`,options);
+}
+export function deleteComment(options){
+    return request('post',`topic/item/${options.topicId}/comment/delete`,options);
 }
